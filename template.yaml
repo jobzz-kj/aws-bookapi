@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  GetAllCategoryFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/controllers/categoryController.getAllCategory
+      Runtime: nodejs16.x
+      Environment:
+        Variables:
+          DB_HOST: localhost
+          DB_USER: jobzzkj
+          DB_PASSWORD: password
+          DB_DATABASE: bookstores
+      Events:
+        GetAllCategoryApi:
+          Type: Api
+          Properties:
+            Path: /categories
+            Method: GET
